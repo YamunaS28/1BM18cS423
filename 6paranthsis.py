@@ -1,33 +1,36 @@
-class Para:
-    def __init__(self):
-        self.open=[]
-        self.i=None
-    def checkvalid(self,str):
-        valid=False
-        for each in str:
-            if each == '(' or each=='{' or each== '[':
-                self.open.append(each)
-               # print("list",self.open)
-            elif each == ')' or each=='}' or each== ']':
-                if len(self.open) !=0 :
-                    self.i = self.open.pop()
-                   # print("poped",self.i)
-                else:
-                    self.i=None
-                if each == ')' and  self.i == '(':
-                    valid=True
-                elif each == '}' and  self.i=='{':
-                    valid =True
-                elif each == ']' and  self.i =='[':
-                    valid = True
-                else:
-                    valid =False
-        if len(self.open) !=0 :
-            valid =False
-        if(valid):
-            print("valid string...")
-        else:
-            print("Invalid String...")
+class braces:
+    def __init__ (self):
+        self.string = None
 
-str=input("enter string")
-Para().checkvalid(str)
+    def setter(self):
+        self.string =input('ENTER THE STRING: ')
+
+    def check(self):
+        open_braces = ["[","{","("]
+        close_braces = ["]","}",")"]
+        stack = []
+        for i in string: 
+            if i in open_braces: 
+                stack.append(i)
+            elif i in close_braces: 
+                pos = close_braces.index(i) 
+                if ((len(stack) > 0) and
+                    (open_braces[pos] == stack[len(stack)-1])): 
+                    stack.pop() 
+                else: 
+                    return "Unbalanced"
+        if len(stack) == 0: 
+            return "Balanced"
+    
+        
+b = braces()
+string = input('ENTER A STRING')
+print(string,"-", b.check()) 
+
+''' *******************************OUTPUT*****************************
+TC1: 
+ENTER A STRING{[(){}]}
+{[(){}]} - Balanced
+TC2:
+ENTER A STRING{}{{[}}]()
+{}{{[}}]() - Unbalanced
